@@ -6,4 +6,5 @@ type formErrFields = {
 type ElFormValidate = (
   cb?: (valid: boolean) => void
 ) => Promise<boolean | formErrFields[]>
-export { formErrFields, ElFormValidate }
+type reqState = 'none' | 'pending' | 'success' | 'err'
+export { formErrFields, ElFormValidate, reqState }

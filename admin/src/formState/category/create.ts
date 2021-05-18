@@ -1,5 +1,5 @@
 import { reactive } from '@vue/reactivity'
-import { required } from '../validate'
+import { required } from '../validator'
 
 class CategoryCreateFormState {
   forms = { category: '' }

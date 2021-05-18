@@ -1,4 +1,12 @@
+type constantError = {
+  stateCode: number
+  msg: string
+}
 const NAME_OR_PASSWORD_IS_REQUIRED = 'name_or_password_is_required'
+const DB_SERVER_ERROR = {
+  stateCode: 204,
+  msg: 'DB_SERVER_ERROR',
+}
 const USER_ALREADY_EXISTS = {
   stateCode: 400,
   msg: 'user_already_exists',
@@ -40,6 +48,7 @@ const UNAUTHORIZATION = 'UNAUTHORIZATION'
 const UNPERMISSION = 'unpermission'
 
 export {
+  constantError,
   NAME_OR_PASSWORD_IS_REQUIRED,
   USER_DOES_NOT_EXISTS,
   INCORRECT_USERNAME_OR_PASSWORD,
@@ -53,4 +62,5 @@ export {
   USER_NOT_EXISTS,
   EMAIL_NOT_EXISTS,
   INTERNAL_FORGET_CTR_SERVE_ERROR,
+  DB_SERVER_ERROR,
 }

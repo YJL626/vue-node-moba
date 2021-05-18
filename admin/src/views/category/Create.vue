@@ -27,6 +27,7 @@ import { CategoryCreateFormState } from '@/formState/category/create'
 import { defineComponent, ref } from 'vue'
 import { noop } from 'lodash'
 import { ElFormValidate } from '@/type'
+import { CategoryCreate } from '@/network/category.req'
 export default defineComponent({
   setup() {
     const { rules, forms } = new CategoryCreateFormState()
@@ -39,10 +40,12 @@ export default defineComponent({
     const submit = () => {
       elForm.value
         .validate()
-        .then(() => {
-          console.log(55)
+        .then((a) => {
+          const categoryCreate = new CategoryCreate({ name: forms.category })
+          console.log('---------')
         })
-        .catch((err) => console.log(err))
+
+        .catch((err) => console.log('err'))
     }
     return {
       rules,

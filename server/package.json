@@ -5,9 +5,11 @@
   "main": "./js/appp.js",
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "dotenv": "^9.0.2",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-compose": "^4.1.0",
+    "koa-cors": "0.0.16",
     "koa-router": "^10.0.0",
     "mongoose": "^5.12.9",
     "nodemon": "^2.0.7",
@@ -16,6 +18,9 @@
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",
     "@types/koa": "^2.13.1",
+    "@types/koa-cors": "0.0.0",
+    "@types/koa-router": "^7.4.2",
+    "@types/koa__cors": "^3.0.2",
     "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
@@ -24,8 +29,8 @@
   },
   "scripts": {
     "tsc": "tsc -w",
-    "serve": "nodemon --watch js ./js/app.js",
-    "start": "run-p serve tsc "
+    "start": "nodemon --watch js ./js/app.js",
+    "serve": "run-p start tsc "
   },
   "keywords": [],
   "author": "",
