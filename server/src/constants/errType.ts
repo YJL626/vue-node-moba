@@ -11,6 +11,18 @@ const USER_ALREADY_EXISTS = {
   stateCode: 400,
   msg: 'user_already_exists',
 }
+const CATEGORY_ID_IS_NOT_EXISTS = {
+  stateCode: 400,
+  msg: 'CATEGORY_ID_IS_NOT_EXISTS',
+}
+const DEL_ERROR = {
+  stateCode: 400,
+  msg: 'THE_DEL_RESOURCE_IS_NOT_FOUND',
+}
+const PUT_ERROR = {
+  stateCode: 400,
+  msg: 'PUT_ERROR',
+}
 const USER_NOT_EXISTS = {
   stateCode: 400,
   msg: 'user_not_exists',
@@ -48,6 +60,9 @@ const UNAUTHORIZATION = 'UNAUTHORIZATION'
 const UNPERMISSION = 'unpermission'
 
 export {
+  CATEGORY_ID_IS_NOT_EXISTS,
+  PUT_ERROR,
+  DEL_ERROR,
   constantError,
   NAME_OR_PASSWORD_IS_REQUIRED,
   USER_DOES_NOT_EXISTS,

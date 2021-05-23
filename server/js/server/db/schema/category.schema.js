@@ -25,7 +25,7 @@ const categorySchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     parent: {
         type: mongoose_1.default.SchemaTypes.ObjectId,
-        ref: 'categories',
+        ref: 'category',
     },
 });
 exports.categorySchema = categorySchema;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DB_SERVER_ERROR = exports.INTERNAL_FORGET_CTR_SERVE_ERROR = exports.EMAIL_NOT_EXISTS = exports.USER_NOT_EXISTS = exports.INTERNAL_USER_CREATE_FAILED_ERROR = exports.INTERNAL_EMAIL_SERVE_ERROR = exports.USER_ALREADY_EXISTS = exports.EMAIL_ALREADY_EXISTS = exports.DATA_FORM_ERROR = exports.UNPERMISSION = exports.UNAUTHORIZATION = exports.INCORRECT_USERNAME_OR_PASSWORD = exports.USER_DOES_NOT_EXISTS = exports.NAME_OR_PASSWORD_IS_REQUIRED = void 0;
+exports.DB_SERVER_ERROR = exports.INTERNAL_FORGET_CTR_SERVE_ERROR = exports.EMAIL_NOT_EXISTS = exports.USER_NOT_EXISTS = exports.INTERNAL_USER_CREATE_FAILED_ERROR = exports.INTERNAL_EMAIL_SERVE_ERROR = exports.USER_ALREADY_EXISTS = exports.EMAIL_ALREADY_EXISTS = exports.DATA_FORM_ERROR = exports.UNPERMISSION = exports.UNAUTHORIZATION = exports.INCORRECT_USERNAME_OR_PASSWORD = exports.USER_DOES_NOT_EXISTS = exports.NAME_OR_PASSWORD_IS_REQUIRED = exports.DEL_ERROR = exports.PUT_ERROR = exports.CATEGORY_ID_IS_NOT_EXISTS = void 0;
 const NAME_OR_PASSWORD_IS_REQUIRED = 'name_or_password_is_required';
 exports.NAME_OR_PASSWORD_IS_REQUIRED = NAME_OR_PASSWORD_IS_REQUIRED;
 const DB_SERVER_ERROR = {
@@ -13,6 +13,21 @@ const USER_ALREADY_EXISTS = {
     msg: 'user_already_exists',
 };
 exports.USER_ALREADY_EXISTS = USER_ALREADY_EXISTS;
+const CATEGORY_ID_IS_NOT_EXISTS = {
+    stateCode: 400,
+    msg: 'CATEGORY_ID_IS_NOT_EXISTS',
+};
+exports.CATEGORY_ID_IS_NOT_EXISTS = CATEGORY_ID_IS_NOT_EXISTS;
+const DEL_ERROR = {
+    stateCode: 400,
+    msg: 'THE_DEL_RESOURCE_IS_NOT_FOUND',
+};
+exports.DEL_ERROR = DEL_ERROR;
+const PUT_ERROR = {
+    stateCode: 400,
+    msg: 'PUT_ERROR',
+};
+exports.PUT_ERROR = PUT_ERROR;
 const USER_NOT_EXISTS = {
     stateCode: 400,
     msg: 'user_not_exists',
