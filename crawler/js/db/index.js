@@ -8,8 +8,10 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const mobaDbConnect = mongoose_1.default.createConnection('mongodb://mobaAdmin:123456@localhost/moba', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
 });
 exports.mobaDbConnect = mobaDbConnect;
 mobaDbConnect.on('open', () => {
     console.log('db open');
 });
+//# sourceMappingURL=index.js.map

@@ -4,6 +4,7 @@ const mobaDbConnect = Mongoose.createConnection(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   }
 )
 mobaDbConnect.on('open', () => {
