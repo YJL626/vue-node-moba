@@ -15,17 +15,27 @@
 
 ### 功能
 
-爬取全部的英雄信息,以及部分公告信息.
+爬取全部95个英雄详情,以及近期部分公告
 
-每一个英雄详情页面就是一个document
+腾讯视频播放地址是动态分配的失效很快,爬取播放地址,点击跳转到王者荣耀官网进行播放,
 
-装备和铭文,以及英雄的类型是保存的id指向对应的collection
+英雄详情均存储于herodetail 集合内
 
-其余的详情均存储于herodetail内
+装备和铭文,以及英雄的类型,保存指向对应的collection的id
+
+其余信息直接存储在Document中
+
+### 技术栈
+
+使用puppeteer模拟用户用户真实请求与操作.获取真实dom树
+
+使用cheerio对dom数据进行抓取
+
+### 配置
+
+app/config.ts 可以配置MongoDB地址,以及爬虫参数
 
 ### 项目运行
-
-已完成
 
 npm run run  获取数据
 
@@ -33,29 +43,27 @@ npm run run  获取数据
 
 [  ] npm run refresh 清空数据库,重新爬取数据
 
-### 技术栈
 
-使用puppeteer模拟用户用户真实请求,与操作.获取真实dom树
-
-使用cheerio对dom数据进行抓取
 
 ## web web 端
 
-仿王者荣耀官网进行开发
+对爬取来的数据进行展示,
 
-英雄数据均为爬过来的真实数据,
+[ ] 主页
 
-英雄介绍视频是在站内展示,
+[ ]英雄详情页
 
-### 项目运行
+[ ] 公告文章页面
 
-npm run serve
+[ ] 更多公告页面
+
+
+
+
 
 ### 技术栈
 
-vue3 + typescript + script setup
-
-
+vue3 + typescript + volar + script setup
 
 ## admin 数据管理端
 
