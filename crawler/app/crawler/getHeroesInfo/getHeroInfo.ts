@@ -1,15 +1,24 @@
 import cheerio from 'cheerio'
-import { handleCategoryData } from './handelDataFn/handleCategoryData'
-import { saveToHero } from './handelDataFn/saveToHero'
-import { handelSkins } from './handelDataFn/handelSkins'
-import { handelHeroVideo } from './handelDataFn/handelHeroVideo'
-import { getHeroInfoUrl } from './handelDataFn/getHeroTargetUrl'
-import { handelInfoPic } from './handelDataFn/handelInfoPic'
 import { Browser } from 'puppeteer'
-import { handelSkills } from './handelDataFn/handelSkills'
+import { heroDetail } from '../../db/dbType'
+import { HeroDetailModel } from '../../db/model/hero.model'
+import { iPhone } from '../../devices'
+import { getHeroInfoUrl } from './handleDataFn/getHeroTargetUrl'
+import { handleAddPointRec } from './handleDataFn/handelAddPointRec'
+import { handleEquipmentRecs } from './handleDataFn/handelEquipmentRecs'
+import { getInfoPicUrl } from './handleDataFn/getInfoPicUrl'
+import { handleRunes } from './handleDataFn/handelRunes'
+import { handleSkills } from './handleDataFn/handelSkills'
+import { handleSkins } from './handleDataFn/handelSkins'
+import { handleCategories } from './handleDataFn/handleCategories'
+import { handleHeroRelations } from './handleDataFn/handleHeroRelations'
+import { handleLearnVideos } from './handleDataFn/handleLearnVideos'
+import { handleTips } from './handleDataFn/handleTips'
+import { saveToHero } from './handleDataFn/saveToHero'
 
 async function getHeroInfo(index: number, browser: Browser): Promise<void> {
   const page = await browser.newPage()
+  await page.emulate(iPhone)
   const heroInfoUrl = getHeroInfoUrl(index)
   await page.goto(heroInfoUrl, {
     waitUntil: 'networkidle0',
@@ -22,33 +31,46 @@ async function getHeroInfo(index: number, browser: Browser): Promise<void> {
   const heroId = await saveToHero({
     name: $('.hero-name').text(),
     title: $('.hero-title').text(),
-    category: await handleCategoryData($('.hero-location').text()),
+    categories: await handleCategories($('.hero-location').text()),
     index: index,
-  })
-  console.log()
-
+  }).catch(() => console.log('saveToHero ERROR'))
   if (!heroId) {
     console.log('id获取失败')
-
     return
   }
 
-  const heroDetailData = {
-    skills: await handelSkills($),
+  const heroDetailData: heroDetail = {
     heroId,
     soccer: {
-      difficult: Number($('.cnver1').attr('class')?.slice(-1)),
-      skill: Number($('.cnver2').attr('class')?.slice(-1)),
-      attack: Number($('.cnver3').attr('class')?.slice(-1)),
-      survive: Number($('.cnver4').attr('class')?.slice(-1)),
+      difficult: Number($('.cnver4').attr('class')?.slice(-1)) || 10,
+      skill: Number($('.cnver3').attr('class')?.slice(-1)) || 10,
+      attack: Number($('.cnver2').attr('class')?.slice(-1)) || 10,
+      survive: Number($('.cnver1').attr('class')?.slice(-1)) || 10,
     },
-    bgcPic: $('.header-hero>img').attr('src'),
-    skins: await handelSkins($('.hero-skin').attr('href'), browser),
-    heroVideo: await handelHeroVideo(heroInfoUrl, browser),
-    infoPic: await handelInfoPic(index, browser),
+    bgcPic: $('.header-hero>img').attr('href') || '',
+    skins: await handleSkins($('.hero-skin').attr('href'), browser),
+    heroVideo: $('.hero-video>a:nth-child(1)').attr('href') || '',
+    skills: await handleSkills($),
+    addPointRec: await handleAddPointRec($),
+    equipmentRecs: await handleEquipmentRecs($),
+    runes: await handleRunes($),
+    tips: await handleTips($),
+    heroRelations: await handleHeroRelations($),
+    learnVideos: await handleLearnVideos($),
+    infoPic: await getInfoPicUrl(index),
   }
-  console.log(heroDetailData)
 
-  await browser.close()
+  return await saveToHeroDetail(heroDetailData).catch((err) => console.log(err))
+}
+async function saveToHeroDetail(heroDetail: heroDetail) {
+  let document = await HeroDetailModel.findOne({
+    heroId: heroDetail.heroId,
+  }).catch(() => console.log('HeroModel.findOne error'))
+  if (document) {
+    return document._id
+  }
+  const model = new HeroDetailModel(heroDetail)
+  document = await model.save()
+  return document
 }
 export { getHeroInfo }

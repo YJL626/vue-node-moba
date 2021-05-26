@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mobaDbConnect = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const mobaDbConnect = mongoose_1.default.createConnection('mongodb://mobaAdmin:123456@localhost/moba', {
+const config_1 = require("../config");
+const mobaDbConnect = mongoose_1.default.createConnection(config_1.dbSrc, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

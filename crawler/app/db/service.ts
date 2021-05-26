@@ -1,4 +1,4 @@
-import { CategoryModel } from './model/category.schema'
+import { CategoryModel } from './model/category.model'
 
 class Service {
   async getCategoryIdByName(name: string): Promise<string | false> {
@@ -9,8 +9,6 @@ class Service {
     return false
   }
   async createCategory(option: { name: string; parent: string }) {
-    console.log(option)
-
     const model = new CategoryModel(option)
     return await model.save()
   }

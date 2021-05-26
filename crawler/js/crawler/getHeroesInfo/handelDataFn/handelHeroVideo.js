@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handelHeroVideo = void 0;
+exports.handleHeroVideo = void 0;
 const puppeteer_1 = __importDefault(require("puppeteer"));
-const handelHeroVideo = async (heroInfoUrl, browser) => {
+const handleHeroVideo = async (heroInfoUrl, browser) => {
     const page = await browser.newPage();
     try {
         await page.emulate(puppeteer_1.default.devices['iPhone 6']);
@@ -31,5 +31,5 @@ const handelHeroVideo = async (heroInfoUrl, browser) => {
         return '';
     }
 };
-exports.handelHeroVideo = handelHeroVideo;
+exports.handleHeroVideo = handleHeroVideo;
 //# sourceMappingURL=handelHeroVideo.js.map
