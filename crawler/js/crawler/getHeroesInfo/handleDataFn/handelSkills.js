@@ -24,7 +24,8 @@ const handleSkills = async ($) => {
             skills[i].info = $(elem).text() || '';
         });
     }
-    catch {
+    catch (err) {
+        console.log(err);
         console.log('handleSkills error');
     }
     return skills;

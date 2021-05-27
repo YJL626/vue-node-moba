@@ -27,7 +27,9 @@ const handleSkills = async ($: CheerioAPI): Promise<Array<skillInfo>> => {
     $('.plus-int').each((i, elem) => {
       skills[i].info = $(elem).text() || ''
     })
-  } catch {
+  } catch (err) {
+    console.log(err)
+
     console.log('handleSkills error')
   }
   return skills

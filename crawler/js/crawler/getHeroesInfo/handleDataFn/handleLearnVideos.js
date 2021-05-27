@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleLearnVideos = void 0;
 const handleLearnVideos = async ($) => {
     const videoInfos = [];
-    console.log($('.raiders-list.strategy-info').length);
     $('.raiders-list.strategy-info>li').each((i, elem) => {
         videoInfos.push({
             title: $(elem).find('.vdbtn-right>p').text(),

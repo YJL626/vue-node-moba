@@ -2,7 +2,6 @@ import { CheerioAPI } from 'cheerio'
 import { videoInfo } from '../../../db/dbType'
 const handleLearnVideos = async ($: CheerioAPI) => {
   const videoInfos: Array<videoInfo> = []
-  console.log($('.raiders-list.strategy-info').length)
 
   $('.raiders-list.strategy-info>li').each((i, elem) => {
     videoInfos.push({

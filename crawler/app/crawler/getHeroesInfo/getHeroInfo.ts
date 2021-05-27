@@ -23,11 +23,9 @@ async function getHeroInfo(index: number, browser: Browser): Promise<void> {
   await page.goto(heroInfoUrl, {
     waitUntil: 'networkidle0',
   })
-
   const htmlData = await page.content()
   page.close()
   const $ = cheerio.load(htmlData)
-
   const heroId = await saveToHero({
     name: $('.hero-name').text(),
     title: $('.hero-title').text(),
