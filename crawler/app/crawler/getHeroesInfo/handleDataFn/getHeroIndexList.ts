@@ -1,5 +1,5 @@
 import { Browser } from 'puppeteer'
-import { iPhone } from '../../../devices'
+import { iPhone } from '../../../config'
 type heroListItem = { [prop: number]: string }
 const getHeroIndexList = async (browser: Browser): Promise<number[]> => {
   const page = await browser.newPage()

@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleSkills = void 0;
 const handleSkills = async ($) => {
-    const skills = Array.from({ length: 4 }).map(() => {
+    const skills = Array.from({
+        length: $('.plus-name').length,
+    }).map(() => {
         return {
             name: '',
             pic: '',

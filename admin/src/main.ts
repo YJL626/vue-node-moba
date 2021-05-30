@@ -5,7 +5,8 @@ import store from './store'
 
 import installElementPlus from './plugins/element'
 
-import '@csstools/normalize.css'
+import 'tailwindcss/tailwind.css'
+
 import '@/scss/base.scss'
 const app = createApp(App)
 installElementPlus(app)

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHeroInfo = void 0;
 const cheerio_1 = __importDefault(require("cheerio"));
 const hero_model_1 = require("../../db/model/hero.model");
-const devices_1 = require("../../devices");
+const config_1 = require("../../config");
 const getHeroTargetUrl_1 = require("./handleDataFn/getHeroTargetUrl");
 const handelAddPointRec_1 = require("./handleDataFn/handelAddPointRec");
 const handelEquipmentRecs_1 = require("./handleDataFn/handelEquipmentRecs");
@@ -21,7 +21,7 @@ const handleTips_1 = require("./handleDataFn/handleTips");
 const saveToHero_1 = require("./handleDataFn/saveToHero");
 async function getHeroInfo(index, browser) {
     const page = await browser.newPage();
-    await page.emulate(devices_1.iPhone);
+    await page.emulate(config_1.iPhone);
     const heroInfoUrl = getHeroTargetUrl_1.getHeroInfoUrl(index);
     await page.goto(heroInfoUrl, {
         waitUntil: 'networkidle0',

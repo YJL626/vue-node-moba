@@ -6,7 +6,9 @@ type skillInfo = {
   plusValue: string
 }
 const handleSkills = async ($: CheerioAPI): Promise<Array<skillInfo>> => {
-  const skills: Array<skillInfo> = Array.from({ length: 4 }).map(() => {
+  const skills: Array<skillInfo> = Array.from({
+    length: $('.plus-name').length,
+  }).map(() => {
     return {
       name: '',
       pic: '',
@@ -18,6 +20,7 @@ const handleSkills = async ($: CheerioAPI): Promise<Array<skillInfo>> => {
     $('.plus-tab.controller  img').each((i, elem) => {
       skills[i].pic = elem.attribs.src
     })
+
     $('.plus-name').each((i, elem) => {
       skills[i].name = $(elem).text() || ''
     })

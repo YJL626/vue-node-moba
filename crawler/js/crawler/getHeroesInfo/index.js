@@ -25,7 +25,6 @@ const getHeroesInfo = async (browser) => {
         }
     }
     await Promise.allSettled(runningList);
-    return 0;
 };
 exports.getHeroesInfo = getHeroesInfo;
 //# sourceMappingURL=index.js.map

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHeroIndexList = void 0;
-const devices_1 = require("../../../devices");
+const config_1 = require("../../../config");
 const getHeroIndexList = async (browser) => {
     const page = await browser.newPage();
-    await page.emulate(devices_1.iPhone);
+    await page.emulate(config_1.iPhone);
     await page.goto('https://pvp.qq.com/m/', { waitUntil: 'networkidle0' });
     let tryCount = 3;
     while (tryCount > 0) {

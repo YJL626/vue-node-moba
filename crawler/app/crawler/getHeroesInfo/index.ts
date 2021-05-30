@@ -5,7 +5,7 @@ import { getHeroInfo } from './getHeroInfo'
 
 import { getHeroIndexList } from './handleDataFn/getHeroIndexList'
 
-const getHeroesInfo = async (browser: Browser): Promise<unknown> => {
+const getHeroesInfo = async (browser: Browser): Promise<void> => {
   const heroIndexList = await getHeroIndexList(browser)
 
   let runningList: Array<Promise<unknown>> = []
@@ -26,6 +26,5 @@ const getHeroesInfo = async (browser: Browser): Promise<unknown> => {
     }
   }
   await Promise.allSettled(runningList)
-  return 0
 }
 export { getHeroesInfo }
