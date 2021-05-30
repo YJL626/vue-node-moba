@@ -1,0 +1,31 @@
+@import"./variable.scss";
+
+html {
+  font-size: 10px;
+}
+
+body {
+  @apply bg-gray-200
+}
+
+* {
+  margin    : 0;
+  padding   : 0;
+  box-sizing: border-box;
+}
+
+.m-text-gray {
+  color: $gray;
+}
+
+.m-h-18 {
+  height: 4.5rem;
+}
+
+.m-bg-black {
+  background-color: $black;
+}
+
+.m-bg-yellow {
+  background-color: $yellow;
+}
