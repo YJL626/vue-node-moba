@@ -4,7 +4,7 @@ exports.DB_SERVER_ERROR = exports.INTERNAL_FORGET_CTR_SERVE_ERROR = exports.EMAI
 const NAME_OR_PASSWORD_IS_REQUIRED = 'name_or_password_is_required';
 exports.NAME_OR_PASSWORD_IS_REQUIRED = NAME_OR_PASSWORD_IS_REQUIRED;
 const DB_SERVER_ERROR = {
-    stateCode: 204,
+    stateCode: 500,
     msg: 'DB_SERVER_ERROR',
 };
 exports.DB_SERVER_ERROR = DB_SERVER_ERROR;

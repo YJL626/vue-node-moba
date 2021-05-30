@@ -4,7 +4,7 @@ type constantError = {
 }
 const NAME_OR_PASSWORD_IS_REQUIRED = 'name_or_password_is_required'
 const DB_SERVER_ERROR = {
-  stateCode: 204,
+  stateCode: 500,
   msg: 'DB_SERVER_ERROR',
 }
 const USER_ALREADY_EXISTS = {

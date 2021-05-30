@@ -9,6 +9,7 @@ const config_1 = require("../../config/config");
 const mobaDbConnect = mongoose_1.default.createConnection(config_1.MOBA_DATE_BASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
 });
 exports.mobaDbConnect = mobaDbConnect;
 mobaDbConnect.on('open', () => {

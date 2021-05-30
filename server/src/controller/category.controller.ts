@@ -7,6 +7,7 @@ import {
   CATEGORY_ID_IS_NOT_EXISTS,
 } from '../constants/errType'
 import { categoryServer } from '../server/category.server'
+import { CategoryModel } from '../server/db/model/category.model'
 import { ctx } from '../type'
 
 class CategoryCtr {
@@ -21,8 +22,38 @@ class CategoryCtr {
     }
   }
   async get(ctx: ctx, next: Next) {
+    let result
+    const queryType = ctx.query.type || ''
+    const parent = ctx.query.parent || ''
+
     try {
-      const result = await categoryServer.get()
+      if (!result && queryType === 'top') {
+        result = await CategoryModel.find({ parent: { $exists: false } })
+      }
+      if (!result && parent) {
+        result = await CategoryModel.aggregate([
+          {
+            $lookup: {
+              from: 'categories',
+              localField: 'parent',
+              foreignField: '_id',
+              as: 'parent',
+            },
+          },
+          {
+            $match: {
+              'parent.0.name': 'Banner',
+            },
+          },
+          {
+            $set: { parent: { $first: '$parent' } },
+          },
+        ])
+      }
+
+      if (!result) {
+        result = await CategoryModel.find().populate('parent')
+      }
 
       ctx.body = result
       await next()
@@ -30,6 +61,7 @@ class CategoryCtr {
       ctx.app.emit('error', DB_SERVER_ERROR, ctx)
     }
   }
+
   async getItem(ctx: ctx, next: Next) {
     const id = ctx.params.id as string
     const result = await categoryServer.getItemById({ id })
@@ -53,8 +85,6 @@ class CategoryCtr {
   async put(ctx: ctx, next: Next) {
     const id = ctx.params.id
     const { parent, name } = ctx.request.body
-    console.log(id)
-
     const result = await categoryServer.replace({ id, parent, name })
     if (result) {
       ctx.body = '修改成功'

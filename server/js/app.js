@@ -9,12 +9,14 @@ const cors_1 = __importDefault(require("@koa/cors"));
 const index_1 = require("./router/index");
 const errorHandle_1 = require("./middleware/errorHandle");
 const koa_static_1 = __importDefault(require("koa-static"));
+const delay_1 = require("./middleware/delay");
 const app = new koa_1.default();
 app
     .use(koa_static_1.default(path_1.resolve('./static')))
     .on('error', errorHandle_1.errHandle)
     .use(cors_1.default())
     .use(index_1.composeRouter)
+    .use(delay_1.delay(500))
     .listen(8000, () => {
     console.log('start');
 });

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.categoryCtr = void 0;
 const errType_1 = require("../constants/errType");
 const category_server_1 = require("../server/category.server");
+const category_model_1 = require("../server/db/model/category.model");
 class CategoryCtr {
     async create(ctx, next) {
         const result = await category_server_1.categoryServer.create(ctx.request.body);
@@ -16,8 +17,36 @@ class CategoryCtr {
         }
     }
     async get(ctx, next) {
+        let result;
+        const queryType = ctx.query.type || '';
+        const parent = ctx.query.parent || '';
         try {
-            const result = await category_server_1.categoryServer.get();
+            if (!result && queryType === 'top') {
+                result = await category_model_1.CategoryModel.find({ parent: { $exists: false } });
+            }
+            if (!result && parent) {
+                result = await category_model_1.CategoryModel.aggregate([
+                    {
+                        $lookup: {
+                            from: 'categories',
+                            localField: 'parent',
+                            foreignField: '_id',
+                            as: 'parent',
+                        },
+                    },
+                    {
+                        $match: {
+                            'parent.0.name': 'Banner',
+                        },
+                    },
+                    {
+                        $set: { parent: { $first: '$parent' } },
+                    },
+                ]);
+            }
+            if (!result) {
+                result = await category_model_1.CategoryModel.find().populate('parent');
+            }
             ctx.body = result;
             await next();
         }
@@ -50,7 +79,6 @@ class CategoryCtr {
     async put(ctx, next) {
         const id = ctx.params.id;
         const { parent, name } = ctx.request.body;
-        console.log(id);
         const result = await category_server_1.categoryServer.replace({ id, parent, name });
         if (result) {
             ctx.body = '修改成功';
