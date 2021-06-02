@@ -23,14 +23,13 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core'
 import 'swiper/components/pagination/pagination.min.css'
-
 import 'swiper/swiper.scss'
-import { defineProps } from '@vue/runtime-core'
+
+import { defineProps, getCurrentInstance, nextTick } from '@vue/runtime-core'
 import { GetBanner } from '@/network/Banner'
 defineProps<{
   banners: GetBanner['banners']
 }>()
-
 SwiperCore.use([Pagination, Autoplay])
 </script>
 <style lang="scss" scope>

@@ -8,7 +8,6 @@ type homeNavItem = {
     height: string
   }
 }
-;+`url(${require('@/assets/image/sprit.png')})`
 const homeNavList: Array<homeNavItem> = [
   {
     name: '爆料站',

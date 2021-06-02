@@ -28,15 +28,20 @@
         }
       "
     >
-      <i class="fa fa-angle-double-down "></i>
-      <span class="text-lg text-gray-900 font-normal"> 展开</span>
+      <i
+        class="fa fa-angle-double-down transform"
+        :class="{ 'rotate-180': isListOpen }"
+      ></i>
+      <span class="text-lg text-gray-900 font-normal">{{
+        isListOpen ? '收起' : '展开'
+      }}</span>
     </div>
   </HomeCardVue>
 </template>
 <script setup lang="ts">
-import HomeCardVue from './HomeCard.vue'
-import { homeNavList } from '../data/homeNavList'
+import { homeNavList } from '../utils/homeNavList'
 import { ref } from '@vue/reactivity'
+import HomeCardVue from './HomeCard.vue'
 const isListOpen = ref(false)
 </script>
 <style lang="scss" scope>

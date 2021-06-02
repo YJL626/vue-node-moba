@@ -8,14 +8,42 @@ body {
   @apply bg-gray-200
 }
 
+button {
+
+  outline: none;
+
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+
+  outline: none;
+
+}
+
 * {
   margin    : 0;
   padding   : 0;
   box-sizing: border-box;
 }
 
+.m-pb-1px {
+  padding-bottom: 1px;
+}
+
 .m-text-gray {
   color: $gray;
+}
+
+.m-border-gray {
+  border-color: #D7D7D7;
+}
+
+.m-h-1px {
+  height: 1px;
 }
 
 .m-h-18 {
@@ -28,4 +56,8 @@ body {
 
 .m-bg-yellow {
   background-color: $yellow;
+}
+
+.m-text-yellow {
+  color: $yellow;
 }
