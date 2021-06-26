@@ -8,6 +8,6 @@ const RuneScheme = new mongoose_1.Schema({
     pic: String,
     buffs: [String],
 });
-const RuneModel = __1.mobaDbConnect.model('rune', RuneScheme, 'runes');
+const RuneModel = __1.mobaDbConnect.model('rune', RuneScheme);
 exports.RuneModel = RuneModel;
 //# sourceMappingURL=rune.model.js.map

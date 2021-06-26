@@ -1,7 +1,7 @@
 import { Browser } from 'puppeteer'
+import { iPhone, pageOption } from '../../config'
 import { article, articleInfo } from '../../db/dbType'
 import { ArticleContentModel, ArticleModel } from '../../db/model/article.model'
-
 const getArticleInfo = async (
   browser: Browser,
   article: article
@@ -22,8 +22,9 @@ const getArticleInfo = async (
   if (!articleDocument) return
   const articleId = articleDocument._id
   const page = await browser.newPage()
+  await page.emulate(iPhone)
   const targetUrl = article.src.replace(/^\/\//, 'http://')
-  await page.goto(targetUrl)
+  await page.goto(targetUrl,pageOption)
   const content = await page
     .$eval('.info_cont', (elem) => elem.innerHTML)
     .catch(() => '数据获取失败')
@@ -35,4 +36,5 @@ const getArticleInfo = async (
     .save()
     .catch(() => console.log(`getArticleInfo save error`))
 }
+
 export { getArticleInfo }

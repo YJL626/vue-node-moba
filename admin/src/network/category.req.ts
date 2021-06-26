@@ -6,19 +6,18 @@ type categoryDateForm = {
 }
 class GetCategories extends ReqBaseClass {
   list: Array<categoryDateForm> = []
-  type: string
-  constructor(option?: { type?: string }) {
+  option: { type?: string; parent?: string }
+  constructor(option?: { type?: string; parent?: string }) {
     super()
-    this.type = option?.type || ''
+    this.option = option || {}
     this.refresh()
   }
   refresh = async (): Promise<boolean> => {
-    const type = this.type
     if (this.state === networkState.pending) return false
     try {
       this.state = networkState.pending
       this.list = await req
-        .get('/categories', { params: { type } })
+        .get('/categories', { params: this.option })
         .then((result) => result.data as Array<categoryDateForm>)
       this.state = networkState.success
     } catch {

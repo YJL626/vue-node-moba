@@ -2,6 +2,7 @@ import { networkState, req, ReqBaseClass } from '.'
 
 type articleCategory = '热门' | '新闻' | '公告' | '活动' | '赛事'
 export class GetArticleCtr extends ReqBaseClass {
+  private temp: article[] = []
   articles: article[] = []
   pagination: pagination = {
     currentPage: 0,
@@ -9,45 +10,51 @@ export class GetArticleCtr extends ReqBaseClass {
     pageCount: 0,
     total: 0,
   }
-  reqOption!: reqOption
-  init: () => void
+  isMaxPageCount = false
+  private reqOption: reqOption
+  private retry = 3
   constructor(reqOption: reqOption, retry = 3) {
     super()
-    let isInit = false
-    this.init = () => {
-      if (isInit) return
-      this.get(reqOption, retry)
-      isInit = true
-    }
+    this.retry = retry
+    this.reqOption = reqOption
+    this.get()
   }
 
-  private get(reqOption: reqOption, retry: number): void {
-    const { category, size = 10, page = 1 } = reqOption
+  private get(): void {
+    const { category, size = 10, page = 1 } = this.reqOption
     this.reqOption = { category, size, page }
     this.state = networkState.pending
     req
       .get<response>('/article', { params: { category, size, page } })
       .then((result) => {
         this.state = networkState.success
-        this.articles.push(...result.data.data)
+        //实现懒加载,空数据时需要显式使用loadData才会载入数据
+        this.temp.push(...result.data.data)
         this.pagination = result.data.pagination
       })
       .catch(() => {
         this.state = networkState.err
         console.log('GetArticle error')
-        if (retry < 0) return
-        this.get(this.reqOption, --retry)
+        if (this.retry <= 0) return
+        this.retry--
+        this.get()
       })
   }
-  loadMore = async (): Promise<void> => {
+  getMore = (): void => {
     if (this.state === networkState.pending) return
-    const reqOption = this.reqOption
-    reqOption.page = this.pagination.currentPage + 1
-    await this.get(reqOption, 1)
+    if (this.isMaxPageCount) return
+    this.reqOption.page++
+    this.get()
+    if (this.pagination.pageCount <= this.reqOption.page) {
+      this.isMaxPageCount = true
+    }
+  }
+  loadData = (): void => {
+    this.articles = this.temp
   }
 }
 
-type reqOption = { category: articleCategory; size?: number; page?: number }
+type reqOption = { category: articleCategory; size: number; page: number }
 interface response {
   data: article[]
   pagination: pagination

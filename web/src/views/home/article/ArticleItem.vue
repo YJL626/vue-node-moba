@@ -14,11 +14,11 @@
           }"
           >{{ getTagName(article) }}</span
         >
-        <span class="w-3/4   truncate text-xl mr-0  ">
+        <span class="w-3/5  truncate text-xl mr-0  ">
           {{ article.title }}
         </span>
         <span class="ml-auto text-gray-400">{{
-          dayjs(article.time).format('MM-DD')
+          dayjs(article.time).format(dateFormat)
         }}</span>
       </router-link>
     </li>
@@ -33,6 +33,7 @@ type articleCategory = '热门' | '新闻' | '公告' | '活动' | '赛事'
 const props = defineProps<{
   article: GetArticleCtr['articles'][0]
   isHotCategory?: boolean
+  dateFormat: 'MM-DD' | 'YYYY-MM-DD'
 }>()
 const getTagColor = (tagName: articleCategory): string => {
   switch (tagName) {

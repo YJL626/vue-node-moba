@@ -10,6 +10,7 @@ const index_1 = require("./router/index");
 const errorHandle_1 = require("./middleware/errorHandle");
 const koa_static_1 = __importDefault(require("koa-static"));
 const delay_1 = require("./middleware/delay");
+require("./server/db/registerModel"); /* 注册model,避免一部分model没有被注册 */
 const app = new koa_1.default();
 app
     .use(koa_static_1.default(path_1.resolve('./static')))

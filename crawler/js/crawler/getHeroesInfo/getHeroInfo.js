@@ -23,9 +23,7 @@ async function getHeroInfo(index, browser) {
     const page = await browser.newPage();
     await page.emulate(config_1.iPhone);
     const heroInfoUrl = getHeroTargetUrl_1.getHeroInfoUrl(index);
-    await page.goto(heroInfoUrl, {
-        waitUntil: 'networkidle0',
-    });
+    await page.goto(heroInfoUrl, config_1.pageOption);
     const htmlData = await page.content();
     page.close();
     const $ = cheerio_1.default.load(htmlData);
@@ -41,13 +39,13 @@ async function getHeroInfo(index, browser) {
     }
     const heroDetailData = {
         heroId,
-        soccer: {
+        score: {
             difficult: Number($('.cnver4').attr('class')?.slice(-1)) || 10,
             skill: Number($('.cnver3').attr('class')?.slice(-1)) || 10,
             attack: Number($('.cnver2').attr('class')?.slice(-1)) || 10,
             survive: Number($('.cnver1').attr('class')?.slice(-1)) || 10,
         },
-        bgcPic: $('.header-hero>img').attr('href') || '',
+        bgcPic: $('.header-hero>img').attr('src') || '',
         skins: await handelSkins_1.handleSkins($('.hero-skin').attr('href'), browser),
         heroVideo: $('.hero-video>a:nth-child(1)').attr('href') || '',
         skills: await handelSkills_1.handleSkills($),

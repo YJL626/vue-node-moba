@@ -21,12 +21,14 @@ const getHeroIndexList = async (browser) => {
         }
         if (tryCount === 1) {
             console.log('获取失败');
+            process.exit();
         }
-        await page.goto('https://pvp.qq.com/m/', { waitUntil: 'networkidle0' });
+        console.log('获取失败 正在重试');
+        await page.goto('https://pvp.qq.com/m/', config_1.pageOption);
         tryCount--;
     }
-    console.log('list-获取失败');
-    return process.exit();
+    console.log('id list-获取失败');
+    process.exit();
 };
 exports.getHeroIndexList = getHeroIndexList;
 //# sourceMappingURL=getHeroIndexList.js.map

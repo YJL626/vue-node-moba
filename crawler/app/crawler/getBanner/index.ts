@@ -1,6 +1,6 @@
 import Cheerio, { Element } from 'cheerio'
 import { Browser } from 'puppeteer'
-import { iPhone } from '../../config'
+import { iPhone,pageOption } from '../../config'
 import { mobaDbConnect } from '../../db'
 import { banner } from '../../db/dbType'
 import { BannerModel } from '../../db/model/banner.model'
@@ -9,7 +9,7 @@ import { handleCategory } from './handleCategory'
 const getHomeBanners = async (browser: Browser): Promise<void> => {
   const page = await browser.newPage()
   await page.emulate(iPhone)
-  await page.goto('https://pvp.qq.com/m/')
+  await page.goto('https://pvp.qq.com/m/',pageOption)
   const html = await page.content()
   const $ = Cheerio.load(html)
   const banners: banner[] = []
@@ -31,12 +31,11 @@ const getHomeBanners = async (browser: Browser): Promise<void> => {
     })
   )
   if ((await BannerModel.find()).length) {
-    ;(await mobaDbConnect).dropCollection('banners')
+    await mobaDbConnect.dropCollection('banners')
   }
   await BannerModel.insertMany(banners).catch((err) => {
     console.log(err)
     process.exit()
   })
-  console.log(banners)
 }
 export { getHomeBanners }

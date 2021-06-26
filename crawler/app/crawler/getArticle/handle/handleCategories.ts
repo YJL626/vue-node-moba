@@ -1,4 +1,5 @@
 import { CategoryModel } from '../../../db/model/category.model'
+import { getArticleId } from '../utils/getter'
 let articleId = ''
 const handleCategories = async (category: string): Promise<string> => {
   if (!articleId) {
@@ -22,19 +23,5 @@ const handleCategories = async (category: string): Promise<string> => {
     return ''
   }
 }
-async function getArticleId() {
-  let newsDocument = await CategoryModel.findOne({ name: '文章' })
-  if (newsDocument) {
-    return newsDocument._id
-  }
-  newsDocument = await new CategoryModel({ name: '文章' })
-    .save()
-    .catch(() => CategoryModel.findOne({ name: '文章' }))
-  if (newsDocument) {
-    return newsDocument._id
-  } else {
-    console.log('getArticleId error')
-    process.exit()
-  }
-}
+
 export { handleCategories }

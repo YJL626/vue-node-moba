@@ -21,6 +21,8 @@ import {
   ElPopconfirm,
   ElLoading,
   ElPagination,
+  ElCheckbox,
+  ElCheckboxGroup,
 } from 'element-plus'
 import lang from 'element-plus/lib/locale/lang/zh-cn'
 import locale from 'element-plus/lib/locale'
@@ -29,6 +31,8 @@ import { App } from '@vue/runtime-core'
 export default (app: App<Element>): void => {
   locale.use(lang)
   const plugins = [
+    ElCheckbox,
+    ElCheckboxGroup,
     ElPagination,
     ElLoading,
     ElPopconfirm,

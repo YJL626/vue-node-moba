@@ -6,7 +6,9 @@ import { composeRouter } from './router/index'
 import { errHandle } from './middleware/errorHandle'
 import koaStatic from 'koa-static'
 import { delay } from './middleware/delay'
+import './server/db/registerModel' /* 注册model,避免一部分model没有被注册 */
 const app = new Koa()
+
 app
   .use(koaStatic(resolve('./static')))
   .on('error', errHandle)

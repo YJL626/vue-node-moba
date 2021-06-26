@@ -25,6 +25,7 @@ class CategoryCtr {
                 result = await category_model_1.CategoryModel.find({ parent: { $exists: false } });
             }
             if (!result && parent) {
+                console.log(parent);
                 result = await category_model_1.CategoryModel.aggregate([
                     {
                         $lookup: {
@@ -36,7 +37,7 @@ class CategoryCtr {
                     },
                     {
                         $match: {
-                            'parent.0.name': 'Banner',
+                            'parent.0.name': parent,
                         },
                     },
                     {

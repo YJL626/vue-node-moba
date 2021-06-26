@@ -10,7 +10,7 @@ const heroSchema = new Schema({
 const heroDetailSchema = new Schema(
   {
     heroId: { type: SchemaTypes.ObjectId, ref: 'hero' },
-    soccer: {
+    score: {
       difficult: Number,
       skill: Number,
       attack: Number,

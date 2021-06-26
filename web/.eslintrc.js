@@ -19,5 +19,6 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     'comma-dangle': 'off',
+    'no-debugger': 'off',
   },
 }

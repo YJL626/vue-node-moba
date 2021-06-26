@@ -19,8 +19,6 @@ class GetBanner extends ReqBaseClass {
       .get('/banner', { params: category })
       .then((result) => {
         this.state = networkState.success
-        console.log(result.data)
-
         this.banners = result.data
       })
       .catch(() => {

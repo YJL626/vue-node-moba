@@ -2,9 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "./js/appp.js",
+  "main": "./js/app.js",
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.0.0",
     "dotenv": "^9.0.2",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
@@ -23,16 +24,20 @@
     "@types/koa-router": "^7.4.2",
     "@types/koa-static": "^4.0.1",
     "@types/koa__cors": "^3.0.2",
+    "@types/koa__router": "^8.0.4",
     "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
+    "@ujl/clean-dir": "^1.0.1",
     "eslint": "^7.26.0",
     "npm-run-all": "^4.1.5"
   },
   "scripts": {
     "tsc": "tsc -w",
-    "start": "nodemon --watch js ./js/app.js",
-    "serve": "run-p start tsc "
+    "clean": "clean-dir ./js",
+    "start": "node ./js/app.js",
+    "watch": "nodemon --delay 500ms --watch js ./js/app.js",
+    "serve": "run-p clean tsc watch"
   },
   "keywords": [],
   "author": "",

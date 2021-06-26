@@ -1,0 +1,1 @@
+{"version":3,"file":"articleErrorMsg.js","sourceRoot":"","sources":["../../../src/router/errorMsg/articleErrorMsg.ts"],"names":[],"mappings":";;;AAAA,MAAM,wBAAwB,GAAG;IAC/B,SAAS,EAAE,GAAG;IACd,GAAG,EAAE,0BAA0B;CAChC,CAAA;AAK0B,4DAAwB;AAJnD,MAAM,gBAAgB,GAAG;IACvB,SAAS,EAAE,GAAG;IACd,GAAG,EAAE,qBAAqB;CAC3B,CAAA;AACQ,4CAAgB"}

@@ -7,6 +7,7 @@ exports.mobaDbConnect = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = require("../config");
 console.log('---');
+mongoose_1.default.set('useFindAndModify', false);
 const mobaDbConnect = mongoose_1.default.createConnection(config_1.dbSrc, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -12,7 +12,7 @@
   </ul>
 
   <div
-    class="px-4"
+    class="px-4 "
     v-for="(articleCtr, index) in articleCtrs"
     :key="index"
     v-show="currenPage === index"
@@ -22,15 +22,18 @@
         v-for="article in articleCtr.articles"
         :article="article"
         :key="article._id"
+        dateFormat="YYYY-MM-DD"
       />
     </ul>
     <button
-      @click="articleCtr.loadMore"
+      @click="articleCtr.getMore"
       class="block w-full py-3 rounded-xl bg-gray-300 text-gray-500 text-2xl"
     >
       {{
         articleCtrs[index].state === networkState.pending
           ? '正在加载'
+          : articleCtrs[index].isMaxPageCount
+          ? '已经到最底了'
           : '点击加载更多'
       }}
     </button>
@@ -48,18 +51,12 @@ const articleCtrs = articleCategories.map(
     new GetArticleCtr({
       category,
       size: 15,
+      page: 1,
     })
 )
 const currenPage = ref(0)
-//初始化一下默认页面
-articleCtrs[currenPage.value].init()
 //实现懒加载
-watch(currenPage, (value) => {
-  console.log(value)
-
-  if (articleCtrs[value].state !== networkState.none) return
-  articleCtrs[value].init()
-})
+watch(currenPage, (value) => articleCtrs[value].loadData(), { immediate: true })
 </script>
 <style lang="scss" scope>
 .category-header {

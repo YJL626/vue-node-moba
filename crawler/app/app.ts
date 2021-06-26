@@ -1,9 +1,11 @@
 import { getHeroesInfo } from './crawler/getHeroesInfo'
 import puppeteer from 'puppeteer'
 import { closeExcessPage } from './crawler/utils/closeExcessPage'
-import { getNews } from './crawler/getArticle'
+import { getArticles } from './crawler/getArticle'
 import { mobaDbConnect } from './db'
 import { getHomeBanners } from './crawler/getBanner'
+import { addHeroHotCategory } from './crawler/getHeroesInfo/addHeroHotCategory'
+import { iPhone } from './config'
 mobaDbConnect
 ;(async () => {
   const browser = await puppeteer.launch({
@@ -15,9 +17,9 @@ mobaDbConnect
 
   await getHeroesInfo(browser)
   console.log('hero end')
-  console.log('start get news 列表处操作会停顿十秒左右,系正常情况')
+  console.log('start get news ,列表处操作会停顿十秒左右,系正常情况')
   await closeExcessPage(browser, 1)
-  await getNews(browser)
+  await getArticles(browser)
   console.log('get news end')
   console.log('end')
   process.exit()

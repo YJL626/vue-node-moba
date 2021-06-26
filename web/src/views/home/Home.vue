@@ -5,7 +5,5 @@
 </template>
 <script setup lang="ts">
 import TopBar from '@/components/TopBar.vue'
-import NavBar from '@/views/home/homeMain/HomeNavBar.vue'
+import NavBar from '@/views/home/homeMain/childComponents/HomeNavBar.vue'
 </script>
-
-<style lang="scss" scope></style>

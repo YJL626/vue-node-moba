@@ -1,0 +1,24 @@
+@use "sass:list";
+
+
+$yMoveRate : 9.927%;
+$xMoveRate : 11.295%;
+$types     : survive,
+attack,
+skill,
+difficult;
+
+@mixin baseScore($xLocation, $index) {
+  background     : url('../assets/image/hero-attrsp.png') no-repeat $xLocation $index*$yMoveRate;
+  background-size: 200px 225px;
+  width          : 19px;
+  height         : 19px;
+}
+
+@each $type in $types {
+  @for $i from 1 through 10 {
+    .#{$type}-score-#{$i} {
+      @include baseScore((list.index($types, $type) - 1) * $xMoveRate, $i - 1)
+    }
+  }
+}

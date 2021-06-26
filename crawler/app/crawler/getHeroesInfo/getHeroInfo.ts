@@ -2,7 +2,7 @@ import cheerio from 'cheerio'
 import { Browser } from 'puppeteer'
 import { heroDetail } from '../../db/dbType'
 import { HeroDetailModel } from '../../db/model/hero.model'
-import { iPhone } from '../../config'
+import { iPhone, pageOption } from '../../config'
 import { getHeroInfoUrl } from './handleDataFn/getHeroTargetUrl'
 import { handleAddPointRec } from './handleDataFn/handelAddPointRec'
 import { handleEquipmentRecs } from './handleDataFn/handelEquipmentRecs'
@@ -20,9 +20,8 @@ async function getHeroInfo(index: number, browser: Browser): Promise<void> {
   const page = await browser.newPage()
   await page.emulate(iPhone)
   const heroInfoUrl = getHeroInfoUrl(index)
-  await page.goto(heroInfoUrl, {
-    waitUntil: 'networkidle0',
-  })
+  await page.goto(heroInfoUrl, pageOption)
+
   const htmlData = await page.content()
   page.close()
   const $ = cheerio.load(htmlData)
@@ -39,13 +38,13 @@ async function getHeroInfo(index: number, browser: Browser): Promise<void> {
 
   const heroDetailData: heroDetail = {
     heroId,
-    soccer: {
+    score: {
       difficult: Number($('.cnver4').attr('class')?.slice(-1)) || 10,
       skill: Number($('.cnver3').attr('class')?.slice(-1)) || 10,
       attack: Number($('.cnver2').attr('class')?.slice(-1)) || 10,
       survive: Number($('.cnver1').attr('class')?.slice(-1)) || 10,
     },
-    bgcPic: $('.header-hero>img').attr('href') || '',
+    bgcPic: $('.header-hero>img').attr('src') || '',
     skins: await handleSkins($('.hero-skin').attr('href'), browser),
     heroVideo: $('.hero-video>a:nth-child(1)').attr('href') || '',
     skills: await handleSkills($),

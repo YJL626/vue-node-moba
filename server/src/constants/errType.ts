@@ -15,6 +15,7 @@ const CATEGORY_ID_IS_NOT_EXISTS = {
   stateCode: 400,
   msg: 'CATEGORY_ID_IS_NOT_EXISTS',
 }
+
 const DEL_ERROR = {
   stateCode: 400,
   msg: 'THE_DEL_RESOURCE_IS_NOT_FOUND',

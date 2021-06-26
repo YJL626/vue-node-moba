@@ -6,7 +6,7 @@ const __1 = require("..");
 const bannerSchema = new mongoose_1.Schema({
     pic: String,
     name: String,
-    categories: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'category' },
+    category: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'category' },
     src: String,
     index: Number,
 });

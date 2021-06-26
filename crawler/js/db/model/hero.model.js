@@ -11,7 +11,7 @@ const heroSchema = new mongoose_1.Schema({
 });
 const heroDetailSchema = new mongoose_1.Schema({
     heroId: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'hero' },
-    soccer: {
+    score: {
         difficult: Number,
         skill: Number,
         attack: Number,

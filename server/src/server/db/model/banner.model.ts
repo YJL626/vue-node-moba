@@ -4,7 +4,7 @@ import { mobaDbConnect } from '..'
 const bannerSchema = new Schema({
   pic: String,
   name: String,
-  categories: { type: SchemaTypes.ObjectId, ref: 'category' },
+  category: { type: SchemaTypes.ObjectId, ref: 'category' },
   src: String,
   index: Number,
 })

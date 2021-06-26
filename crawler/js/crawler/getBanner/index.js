@@ -12,7 +12,7 @@ const handleCategory_1 = require("./handleCategory");
 const getHomeBanners = async (browser) => {
     const page = await browser.newPage();
     await page.emulate(config_1.iPhone);
-    await page.goto('https://pvp.qq.com/m/');
+    await page.goto('https://pvp.qq.com/m/', config_1.pageOption);
     const html = await page.content();
     const $ = cheerio_1.default.load(html);
     const banners = [];
@@ -31,14 +31,12 @@ const getHomeBanners = async (browser) => {
         });
     }));
     if ((await banner_model_1.BannerModel.find()).length) {
-        ;
-        (await db_1.mobaDbConnect).dropCollection('banners');
+        await db_1.mobaDbConnect.dropCollection('banners');
     }
     await banner_model_1.BannerModel.insertMany(banners).catch((err) => {
         console.log(err);
         process.exit();
     });
-    console.log(banners);
 };
 exports.getHomeBanners = getHomeBanners;
 //# sourceMappingURL=index.js.map
