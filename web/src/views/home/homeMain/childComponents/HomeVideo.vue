@@ -19,7 +19,7 @@
       </ul>
       <Swiper @slideChange="slideChange" @swiper="onSwiper">
         <SwiperSlide v-for="videos in videosCollection" :key="videos._id">
-          <div class="home-video-container">
+          <div class="home-video-container mt-4">
             <VideoCardVue
               v-for="video in videos.videos"
               :key="video._id"
