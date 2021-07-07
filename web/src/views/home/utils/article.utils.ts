@@ -1,4 +1,4 @@
-import { GetArticleCtr } from '@/network/getArticleList'
+import { GetArticleCtr } from '@/network/ReqArticleList'
 
 type articleCategory = '热门' | '新闻' | '公告' | '活动' | '赛事'
 const articleCategories: articleCategory[] = [

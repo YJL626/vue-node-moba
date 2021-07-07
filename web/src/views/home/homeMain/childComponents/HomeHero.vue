@@ -5,11 +5,11 @@
       fontIconClass="fa fa-user-circle"
       :rightConfig="{ routeName: 'heroList' }"
     />
-    <a @click.prevent="$router.push(`/heroes/60c8c0e199d68b230cf63c25`)">
-      <img
-        src="//ossweb-img.qq.com/upload/webplat/info/yxzj/20210408/819841077459195.jpg"
-        alt=""
-      />
+    <a
+      v-if="reqHomeData.state === networkState.success"
+      @click.prevent="$router.push(`/heroes/${heroRec.heroId}`)"
+    >
+      <img :src="heroRec.pic" alt="heroRecImg" />
     </a>
 
     <hr class="my-5" />
@@ -40,27 +40,23 @@
       </SwiperSlide>
     </Swiper>
   </HomeCardVue>
-  <div>1</div>
-  <div>1</div>
-  <div>1</div>
-  <div>1</div>
-  <div>1</div>
-  <div>1</div>
-  <div>1</div>
 </template>
 <script setup lang="ts">
+import { unref, computed, ref } from 'vue'
 import CardHeaderVue from '@/components/CardHeader.vue'
 import HomeCardVue from '../../../../components/BaseCard.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import type { Swiper as Swiperctr } from 'swiper'
-import 'swiper/swiper.scss'
-import { ref } from '@vue/reactivity'
 import HeroAvatarVue from '@/views/hero/childComponents/HeroAvatar.vue'
 import { ReqHeroList } from '@/network/ReqHeroList'
 import { nextTick, watch } from '@vue/runtime-core'
 import { noop } from '@/utils/utils'
 import { useDebounceFn } from '@vueuse/core'
 import { heroBaseCategories } from '../../utils/heroCategories'
+import { reqHomeData } from '@/network/ReqHomeData'
+import { networkState } from '@/network'
+
+const heroRec = computed(()=>unref(reqHomeData.result).heroRec )
 const heroCategories = ['热门英雄', ...heroBaseCategories]
 const heroDataCtrs = heroCategories.map(
   (category) => new ReqHeroList({ category }, 5)

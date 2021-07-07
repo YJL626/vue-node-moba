@@ -26,7 +26,7 @@ import 'swiper/components/pagination/pagination.min.css'
 import 'swiper/swiper.scss'
 
 import { defineProps, getCurrentInstance, nextTick } from '@vue/runtime-core'
-import { GetBanner } from '@/network/Banner'
+import { GetBanner } from '@/network/ReqBanner'
 defineProps<{
   banners: GetBanner['banners']
 }>()

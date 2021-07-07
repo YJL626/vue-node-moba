@@ -25,7 +25,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { GetArticleCtr } from '@/network/getArticleList'
+import { GetArticleCtr } from '@/network/ReqArticleList'
 import { defineProps, getCurrentInstance } from '@vue/runtime-core'
 import dayjs from 'dayjs'
 type articleCategory = '热门' | '新闻' | '公告' | '活动' | '赛事'

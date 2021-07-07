@@ -34,20 +34,17 @@
   </HomeCardVue>
 </template>
 <script setup lang="ts">
-import { reactive, ref, toRef } from '@vue/reactivity'
-import dayjs from 'dayjs'
+import { reactive, ref, watch } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import SwiperCore, { Controller, Swiper as SwiperCtr } from 'swiper'
 import 'swiper/swiper.scss'
 
-import { GetArticleCtr } from '@/network/getArticleList'
+import { GetArticleCtr } from '@/network/ReqArticleList'
 
 import CardHeaderVue from '@/components/CardHeader.vue'
 import HomeCardVue from '../../../../components/BaseCard.vue'
 import { noop } from '@/utils/utils'
-import { defineAsyncComponent, watch } from '@vue/runtime-core'
 import ArticleItemVue from '../../article/ArticleItem.vue'
-import { networkState } from '@/network'
 import { articleCategories } from '../../utils/article.utils'
 SwiperCore.use([Controller])
 const swiperCtr = ref((noop as unknown) as SwiperCtr)

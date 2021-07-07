@@ -10,7 +10,16 @@ enum networkState {
 class ReqBaseClass {
   state: networkState = networkState.none
   constructor() {
-    return reactive(this)
+    return reactive(this) as ReqBaseClass
+  }
+  protected _setStatePending(): void {
+    this.state = networkState.pending
+  }
+  protected _setStateSuccess(): void {
+    this.state = networkState.success
+  }
+  protected _setStateErr(): void {
+    this.state = networkState.err
   }
 }
 const req = axios.create({

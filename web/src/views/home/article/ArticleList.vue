@@ -41,7 +41,7 @@
 </template>
 <script setup lang="ts">
 import { networkState } from '@/network'
-import { GetArticleCtr } from '@/network/getArticleList'
+import { GetArticleCtr } from '@/network/ReqArticleList'
 import { ref } from '@vue/reactivity'
 import { watch } from '@vue/runtime-core'
 import { articleCategories } from '../utils/article.utils'
