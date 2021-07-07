@@ -3,23 +3,43 @@
 仿王者荣耀官网
 基本数据为真实数据,从官网爬取而来,可以通过 数据管理端 对数据进行 crud
 
-#### 开发目的
+## web web 端
 
- 熟悉 vue3 setup api,以及puppeteer的简单使用
 
-仅供交流学习
+
+对爬取来的数据进行展示,
+
+[ X ] 主页
+
+[ X ] 文章列表页  #/article/list //已完成   近期800条公告
+
+[ X ] 文章详情页 #/article/info?id={{articleid}} 已完成   近期800条公告
+
+[ X ] 英雄详情页  #/heroes/{{heroid}} 已完成  全部英雄详情,全部装备,铭文,
+
+[ X ] 视频播放页面 // 视频链接是动态的,很快就会时效,所以点击到源视频站点
+
+[ X ]主页nav部分 跳转到对应的网站
+
+[ ]   攻略中心  跳转到  //pvp.qq.com/m/m201706/index.shtml
+
+
+
+#### vue3 + typescript + volar + script setup +  + tailwind
+
+
+
+
 
 ## crawler 爬虫
 
 ### 功能
 
-爬取全部95个英雄详情,全部装备,铭文,以及近期800条公告
+爬取全部英雄详情,全部装备,铭文,以及近期800条公告
 
 ### 技术栈
 
 使用puppeteer模拟用户用户真实请求与操作.获取真实dom树
-
-使用cheerio对dom数据进行抓取
 
 ### 配置
 
@@ -59,17 +79,6 @@ newscontent 存储着对应的content
 
 
 
-## web web 端
-
-对爬取来的数据进行展示,
-
-[X] 主页
-
-[ X ] 文章列表页
-
-[ X ] 文章详情页
-
-[]英雄详情页
 
 
 
@@ -77,9 +86,6 @@ newscontent 存储着对应的content
 
 
 
-### 技术栈
-
-vue3 + typescript + volar + script setup + tailwind
 
 ## admin 数据管理端
 

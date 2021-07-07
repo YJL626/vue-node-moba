@@ -28,7 +28,7 @@ const getHeroesInfo = async (browser: Browser): Promise<void> => {
   await Promise.allSettled(runningList)
   await closeExcessPage(browser)
   await addHeroHotCategory(browser)
-  console.log('addHeroHotCategory end')
+  console.log('getHeroesInfo end')
 }
 
 export { getHeroesInfo }

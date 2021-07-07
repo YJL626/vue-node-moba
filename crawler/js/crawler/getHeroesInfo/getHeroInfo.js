@@ -25,7 +25,6 @@ async function getHeroInfo(index, browser) {
     const heroInfoUrl = getHeroTargetUrl_1.getHeroInfoUrl(index);
     await page.goto(heroInfoUrl, config_1.pageOption);
     const htmlData = await page.content();
-    page.close();
     const $ = cheerio_1.default.load(htmlData);
     const heroId = await saveToHero_1.saveToHero({
         name: $('.hero-name').text(),
@@ -57,7 +56,8 @@ async function getHeroInfo(index, browser) {
         learnVideos: await handleLearnVideos_1.handleLearnVideos($),
         infoPic: await getInfoPicUrl_1.getInfoPicUrl(index),
     };
-    return await saveToHeroDetail(heroDetailData).catch((err) => console.log(err));
+    await page.close();
+    await saveToHeroDetail(heroDetailData).catch((err) => console.log(err));
 }
 exports.getHeroInfo = getHeroInfo;
 async function saveToHeroDetail(heroDetail) {
@@ -67,8 +67,6 @@ async function saveToHeroDetail(heroDetail) {
     if (document) {
         return document._id;
     }
-    const model = new hero_model_1.HeroDetailModel(heroDetail);
-    document = await model.save();
-    return document;
+    new hero_model_1.HeroDetailModel(heroDetail).save().catch((err) => console.log(err));
 }
 //# sourceMappingURL=getHeroInfo.js.map

@@ -1,5 +1,6 @@
 import { mobaDbConnect } from '..'
 import { Schema, SchemaTypes } from 'mongoose'
+import { videoSchema } from './homeVideo.model'
 const heroSchema = new Schema({
   name: { type: String, required: true, unique: true },
   title: { type: String, required: true, unique: true },
@@ -45,15 +46,7 @@ const heroDetailSchema = new Schema(
     heroRelations: [
       { title: String, list: [{ pic: String, content: String }] },
     ],
-    learnVideos: [
-      {
-        title: String,
-        src: String,
-        pic: String,
-        createTime: String,
-        clickCount: String,
-      },
-    ],
+    learnVideos: [videoSchema],
   },
   { timestamps: true }
 )

@@ -37,6 +37,7 @@ const getHomeBanners = async (browser) => {
         console.log(err);
         process.exit();
     });
+    console.log('home banner end ');
 };
 exports.getHomeBanners = getHomeBanners;
 //# sourceMappingURL=index.js.map

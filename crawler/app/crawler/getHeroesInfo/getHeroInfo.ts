@@ -23,7 +23,7 @@ async function getHeroInfo(index: number, browser: Browser): Promise<void> {
   await page.goto(heroInfoUrl, pageOption)
 
   const htmlData = await page.content()
-  page.close()
+
   const $ = cheerio.load(htmlData)
   const heroId = await saveToHero({
     name: $('.hero-name').text(),
@@ -56,8 +56,8 @@ async function getHeroInfo(index: number, browser: Browser): Promise<void> {
     learnVideos: await handleLearnVideos($),
     infoPic: await getInfoPicUrl(index),
   }
-
-  return await saveToHeroDetail(heroDetailData).catch((err) => console.log(err))
+  await page.close()
+  await saveToHeroDetail(heroDetailData).catch((err) => console.log(err))
 }
 async function saveToHeroDetail(heroDetail: heroDetail) {
   let document = await HeroDetailModel.findOne({
@@ -66,8 +66,6 @@ async function saveToHeroDetail(heroDetail: heroDetail) {
   if (document) {
     return document._id
   }
-  const model = new HeroDetailModel(heroDetail)
-  document = await model.save()
-  return document
+  new HeroDetailModel(heroDetail).save().catch((err) => console.log(err))
 }
 export { getHeroInfo }

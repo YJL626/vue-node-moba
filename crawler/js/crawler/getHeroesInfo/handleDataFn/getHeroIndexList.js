@@ -9,18 +9,21 @@ const getHeroIndexList = async (browser) => {
     let tryCount = 3;
     while (tryCount > 0) {
         console.log('获取英雄列表');
-        const jsonData = await page.evaluate(() => localStorage.getItem('module_exports'));
-        if (jsonData) {
-            const heroList = JSON.parse(jsonData);
-            const indexList = Object.keys(heroList);
-            if (indexList.length > 50) {
-                console.log('获取成功');
-                page.close();
-                return indexList.map((value) => +value);
+        const jsonData = await page.evaluate(() => localStorage.getItem('herolist'));
+        try {
+            if (jsonData) {
+                const heroList = JSON.parse(jsonData);
+                const indexList = heroList.map(({ ename }) => ename);
+                if (indexList.length > 50) {
+                    console.log('获取成功' + indexList.length);
+                    page.close();
+                    return indexList.map((value) => +value);
+                }
             }
         }
-        if (tryCount === 1) {
-            console.log('获取失败');
+        catch { }
+        if (tryCount <= 1) {
+            console.log('id list-获取失败');
             process.exit();
         }
         console.log('获取失败 正在重试');

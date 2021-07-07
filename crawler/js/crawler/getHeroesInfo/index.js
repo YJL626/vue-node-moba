@@ -27,7 +27,7 @@ const getHeroesInfo = async (browser) => {
     await Promise.allSettled(runningList);
     await closeExcessPage_1.closeExcessPage(browser);
     await addHeroHotCategory_1.addHeroHotCategory(browser);
-    console.log('addHeroHotCategory end');
+    console.log('getHeroesInfo end');
 };
 exports.getHeroesInfo = getHeroesInfo;
 //# sourceMappingURL=index.js.map

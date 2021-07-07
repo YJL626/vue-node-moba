@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import { dbSrc, isDrop } from '../config'
-console.log('---')
 mongoose.set('useFindAndModify', false)
 
 const mobaDbConnect = mongoose.createConnection(dbSrc, {
@@ -10,8 +9,7 @@ const mobaDbConnect = mongoose.createConnection(dbSrc, {
 })
 
 if (isDrop) {
-  console.log(isDrop)
-
+  console.log('mobaDbConnect.dropDatabase()')
   mobaDbConnect.dropDatabase()
 }
 mobaDbConnect.on('open', () => {
