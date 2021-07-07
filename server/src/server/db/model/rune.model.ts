@@ -5,5 +5,5 @@ const RuneScheme = new Schema({
   pic: String,
   buffs: [String],
 })
-const RuneModel = mobaDbConnect.model('rune', RuneScheme)
+const RuneModel = mobaDbConnect.model('rune', RuneScheme, 'runes')
 export { RuneModel }

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArticleInfoModel = exports.ArticleModel = void 0;
+exports.ArticleContentModel = exports.ArticleModel = void 0;
 const mongoose_1 = require("mongoose");
 const __1 = require("..");
 const articleSchema = new mongoose_1.Schema({
@@ -15,6 +15,6 @@ const articleInfoSchema = new mongoose_1.Schema({
 });
 const ArticleModel = __1.mobaDbConnect.model('article', articleSchema, 'articles');
 exports.ArticleModel = ArticleModel;
-const ArticleInfoModel = __1.mobaDbConnect.model('articleContent', articleInfoSchema, 'articleContents');
-exports.ArticleInfoModel = ArticleInfoModel;
+const ArticleContentModel = __1.mobaDbConnect.model('articleContent', articleInfoSchema, 'articleContents');
+exports.ArticleContentModel = ArticleContentModel;
 //# sourceMappingURL=article.model.js.map

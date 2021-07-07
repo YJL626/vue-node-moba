@@ -13,9 +13,9 @@ const articleInfoSchema = new Schema({
   content: String,
 })
 const ArticleModel = mobaDbConnect.model('article', articleSchema, 'articles')
-const ArticleInfoModel = mobaDbConnect.model(
+const ArticleContentModel = mobaDbConnect.model(
   'articleContent',
   articleInfoSchema,
   'articleContents'
 )
-export { ArticleModel, ArticleInfoModel }
+export { ArticleModel, ArticleContentModel }

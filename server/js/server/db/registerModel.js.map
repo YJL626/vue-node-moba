@@ -1,1 +1,1 @@
-{"version":3,"file":"registerModel.js","sourceRoot":"","sources":["../../../src/server/db/registerModel.ts"],"names":[],"mappings":";;AAAA,iCAA8B;AAC9B,gCAA6B;AAC7B,kCAA+B;AAC/B,mCAAgC;AAChC,8BAA2B;AAC3B,8BAA2B"}
+{"version":3,"file":"registerModel.js","sourceRoot":"","sources":["../../../src/server/db/registerModel.ts"],"names":[],"mappings":";;AAAA,iCAA8B;AAC9B,gCAA6B;AAC7B,kCAA+B;AAC/B,mCAAgC;AAChC,8BAA2B;AAC3B,8BAA2B;AAC3B,wCAAqC;AACrC,mCAAgC"}
