@@ -1,13 +1,15 @@
 <template>
   <div class="video-card">
-    <img :src="data.pic" :alt="data.title" class="rounded-md" />
-    <h3>{{ data.title }}</h3>
-    <p class="overflow-hidden v-info  text-gray-400 px-1">
-      <span class="click-count float-left"
-        ><i class="fa fa-play-circle-o mr-1" />{{ data.clickCount }}</span
-      >
-      <span class="float-right">{{ data.createTime }}</span>
-    </p>
+    <a :href="data.src">
+      <img :src="data.pic" :alt="data.title" class="rounded-md" />
+      <h3>{{ data.title }}</h3>
+      <p class="overflow-hidden v-info  text-gray-400 px-1">
+        <span class="click-count float-left"
+          ><i class="fa fa-play-circle-o mr-1" />{{ data.clickCount }}</span
+        >
+        <span class="float-right">{{ data.createTime }}</span>
+      </p>
+    </a>
   </div>
 </template>
 <script setup lang="ts">

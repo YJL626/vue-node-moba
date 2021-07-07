@@ -18,12 +18,8 @@
         </li>
       </ul>
       <Swiper @slideChange="slideChange" @swiper="onSwiper">
-        <SwiperSlide
-          v-for="(videos, index) in videosCollection"
-          :key="videos._id"
-        >
-          {{ index }}
-          <div class="home-video-container  ">
+        <SwiperSlide v-for="videos in videosCollection" :key="videos._id">
+          <div class="home-video-container">
             <VideoCardVue
               v-for="video in videos.videos"
               :key="video._id"
