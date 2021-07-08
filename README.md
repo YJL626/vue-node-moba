@@ -11,12 +11,26 @@
 
 - [x] 主页
 
+  
+
 - [x] 文章列表页  #/article/list //已完成   近期800条公告
 
 - [x] 文章详情页 #/article/info?id={{articleid}} 已完成   近期800条公告
+
+  
+
+- [x] 皮肤页面 #/hero-info-pic?pic={{pic}}
+
+- [x] 一图识英雄 #/hero-info-pic?pic={{pic}}
+
 - [x] 英雄详情页  #/heroes/{{heroid}} 已完成  全部英雄详情,全部装备,铭文,
+
 - [x] 视频播放页面 // 视频链接是动态的,很快就会时效,所以点击到源视频站点
+
+  
+
 - [x] 主页nav部分 跳转到对应的网站
+
 - [x] 攻略中心  跳转到  //pvp.qq.com/m/m201706/index.shtml
 
 #### vue3 + typescript + volar + script setup +  + tailwind
