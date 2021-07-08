@@ -6,6 +6,8 @@ const strategy: RouteRecordRaw = {
   name: 'strategy',
   beforeEnter() {
     location.href = strategyCenterURL
+    return false
+    
   },
   component: HomeVue,
 }
