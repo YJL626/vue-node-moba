@@ -1,5 +1,9 @@
 version: '3.9'
 services:
   hero-serve:
-    image: hero-serve
+    build:
+      context: .
+    container_name: hero-serve
     network_mode: host
+    stdin_open: true
+    tty: true
