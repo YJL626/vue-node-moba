@@ -11,5 +11,5 @@ new Koa()
   .use(composeRouter)
   .use(delay(500))
   .listen(8000, () => {
-    console.log('start')
+    console.log('port:8000')
   })
