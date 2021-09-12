@@ -10,7 +10,7 @@ const hero_controller_1 = require("../../controller/hero.controller");
 const checkCtxProp_1 = require("../../middleware/checkCtxProp");
 const heroRouter = new router_1.default({ prefix: '/admin/api/heroes' });
 exports.heroRouter = heroRouter;
-heroRouter.get('/', koa_body_1.default(), hero_controller_1.heroCtr.getHeroes);
+heroRouter.get('/', (0, koa_body_1.default)(), hero_controller_1.heroCtr.getHeroes);
 heroRouter.get('/:id', hero_controller_1.heroCtr.getInfoById);
-heroRouter.post('/:id', koa_body_1.default(), checkCtxProp_1.checkCtxProperty({ request: { body: { title: '' } } }), hero_controller_1.heroCtr.updateAndCreate);
+heroRouter.post('/:id', (0, koa_body_1.default)(), (0, checkCtxProp_1.checkCtxProperty)({ request: { body: { title: '' } } }), hero_controller_1.heroCtr.updateAndCreate);
 //# sourceMappingURL=hero.js.map

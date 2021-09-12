@@ -7,11 +7,11 @@ exports.composeRouter = void 0;
 const koa_compose_1 = __importDefault(require("koa-compose"));
 const getDirModules_1 = require("../utils/getDirModules");
 const utils_1 = require("../utils/utils");
-const routers = getDirModules_1.getDirModules(__dirname, {
+const routers = (0, getDirModules_1.getDirModules)(__dirname, {
     deep: true,
     excludes: [/^index\./],
-}).filter((module) => utils_1.isRouter(module));
-const composeRouter = koa_compose_1.default(
+}).filter((module) => (0, utils_1.isRouter)(module));
+const composeRouter = (0, koa_compose_1.default)(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 routers.reduce((acc, item) => {
     acc.push(item.routes(), item.allowedMethods());

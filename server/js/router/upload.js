@@ -9,10 +9,10 @@ const koa_body_1 = __importDefault(require("koa-body"));
 const koa_router_1 = __importDefault(require("koa-router"));
 const router = new koa_router_1.default({ prefix: '/admin/api/upload' });
 exports.router = router;
-router.post('/', koa_body_1.default({
+router.post('/', (0, koa_body_1.default)({
     multipart: true,
     formidable: {
-        uploadDir: path_1.resolve('./static/picture'),
+        uploadDir: (0, path_1.resolve)('./static/picture'),
         keepExtensions: true,
     },
 }), async (ctx, next) => {

@@ -12,24 +12,24 @@ const fs_1 = require("fs");
 const getDirFilesPath = (path, option) => {
     const { deep = false } = option || {};
     const result = [];
-    const dirents = fs_1.readdirSync(path, { withFileTypes: true });
+    const dirents = (0, fs_1.readdirSync)(path, { withFileTypes: true });
     if (deep) {
         dirents.forEach((dirent) => {
             if (dirent.isDirectory()) {
                 //递归的读取目录文件
-                const files = getDirFilesPath(path_1.resolve(path, dirent.name), {
+                const files = getDirFilesPath((0, path_1.resolve)(path, dirent.name), {
                     deep: true,
                 });
                 result.push(...files);
                 return;
             }
             if (dirent.isFile()) {
-                result.push(path_1.resolve(path, dirent.name));
+                result.push((0, path_1.resolve)(path, dirent.name));
             }
         });
     }
     else {
-        dirents.forEach((dirent) => dirent.isFile() && result.push(path_1.resolve(path, dirent.name)));
+        dirents.forEach((dirent) => dirent.isFile() && result.push((0, path_1.resolve)(path, dirent.name)));
     }
     return result;
 };

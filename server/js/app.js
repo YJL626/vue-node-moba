@@ -11,9 +11,9 @@ const delay_1 = require("./middleware/delay");
 require("./server/db/registerModel"); /* 注册 mongoose model*/
 new koa_1.default()
     .on('error', errorHandle_1.errHandle)
-    .use(cors_1.default())
+    .use((0, cors_1.default)())
     .use(index_1.composeRouter)
-    .use(delay_1.delay(500))
+    .use((0, delay_1.delay)(500))
     .listen(8000, () => {
     console.log('start');
 });

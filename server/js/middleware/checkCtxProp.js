@@ -10,7 +10,7 @@ const checkObjectForm_1 = require("../utils/checkObjectForm");
  */
 const checkCtxProperty = (model) => {
     return async (ctx, next) => {
-        if (checkObjectForm_1.checkObjectForm(model, ctx)) {
+        if ((0, checkObjectForm_1.checkObjectForm)(model, ctx)) {
             await next();
         }
         else {

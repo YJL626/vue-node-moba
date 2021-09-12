@@ -9,6 +9,6 @@ const koa_body_1 = __importDefault(require("koa-body"));
 const hero_controller_1 = require("../../controller/hero.controller");
 const heroRouter = new router_1.default({ prefix: '/api/heroes' });
 exports.heroRouter = heroRouter;
-heroRouter.get('/', koa_body_1.default(), hero_controller_1.heroCtr.getHeroes);
+heroRouter.get('/', (0, koa_body_1.default)(), hero_controller_1.heroCtr.getHeroes);
 heroRouter.get('/:id', hero_controller_1.heroCtr.getInfoById);
 //# sourceMappingURL=hero.js.map
