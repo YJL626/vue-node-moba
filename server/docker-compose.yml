@@ -3,7 +3,21 @@ services:
   hero-serve:
     build:
       context: .
-    container_name: hero-serve
+    depends_on:
+      - hero-mongo
     network_mode: host
+    container_name: hero-serve
     stdin_open: true
     tty: true
+  hero-mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - hero-db-data:/data/db
+      - hero-db-config:/data/configdb
+    stdin_open: true
+    tty: true
+volumes:
+  hero-db-data:
+  hero-db-config:
