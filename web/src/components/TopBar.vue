@@ -1,8 +1,8 @@
 <template>
-  <header class="m-h-18   w-screen ">
+  <header class="m-h-18   w-screen">
     <div
       id="left"
-      class="home-top-img flex items-center fixed top-0 z-10 left-0  px-6 "
+      class="home-top-img flex items-center fixed top-0 z-10 left-0 px-6  "
     >
       <a
         @click.prevent="$router.push({ name: `homeMain` })"
@@ -26,11 +26,20 @@
     </div>
   </header>
 </template>
-<script setup lang="ts">
-import { defineProps } from 'vue-demi'
+<script lang="ts" setup>
+import { defineProps } from 'vue'
 
-defineProps<{
-  hiddenRight?: boolean
-}>()
+defineProps({
+  hiddenRight: Boolean,
+})
 </script>
-<style lang="scss" scope></style>
+<style lang="scss" scope>
+.home-top-img {
+  background-image: url('../assets/image/sprit.png');
+  background-repeat: repeat-x;
+  background-position: 0 87.195%;
+  background-size: 37.5rem 45.5rem;
+  width: 100%;
+  height: 4.6rem;
+}
+</style>
