@@ -20,8 +20,8 @@ async function addHeroHotCategory(browser) {
     });
     await page.waitForTimeout(2000);
     const $ = cheerio_1.default.load(await page.content());
-    const heroId = await getCategoryId_1.getCategoryId({ name: '英雄' }, { create: true });
-    const hotHeroCategoryId = await getCategoryId_1.getCategoryId({ name: '热门英雄', parent: heroId }, { create: true });
+    const heroId = await (0, getCategoryId_1.getCategoryId)({ name: '英雄' }, { create: true });
+    const hotHeroCategoryId = await (0, getCategoryId_1.getCategoryId)({ name: '热门英雄', parent: heroId }, { create: true });
     console.log(hotHeroCategoryId);
     $('.hero-slide-wrapper li').each((i, elem) => {
         const HeroName = $(elem).find('h3').text();
@@ -34,7 +34,7 @@ async function addHeroHotCategory(browser) {
     });
     await Promise.allSettled(pendingPromise);
     console.log('addHeroHotCategory end');
-    await closeExcessPage_1.closeExcessPage(browser);
+    await (0, closeExcessPage_1.closeExcessPage)(browser);
 }
 exports.addHeroHotCategory = addHeroHotCategory;
 //# sourceMappingURL=addHeroHotCategory.js.map

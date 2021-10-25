@@ -52,7 +52,7 @@ async function saveArticleToMap($ArticleElements, articleMap) {
         try {
             const title = $(elem).find('a').text();
             const categories = [
-                await handleCategories_1.handleCategories($(elem).find('span:not(.mess_span)').text()),
+                await (0, handleCategories_1.handleCategories)($(elem).find('span:not(.mess_span)').text()),
             ];
             articleMap.set(title, {
                 categories,
@@ -67,7 +67,7 @@ async function saveArticleToMap($ArticleElements, articleMap) {
     }));
 }
 async function addHotCategory($HotArticleElements, articleMap) {
-    const hotId = await getter_1.getHotId();
+    const hotId = await (0, getter_1.getHotId)();
     const $ = cheerio_1.default;
     $HotArticleElements.each((i, elem) => {
         const title = $(elem).find('a').text();

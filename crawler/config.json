@@ -1,5 +1,5 @@
 {
-  "dbSrc": "mongodb://114.96.84.30/moba",
+  "dbSrc": "mongodb://114.96.84.30:27017",
   "pageCount": 5,
   "isTest": ""
 }

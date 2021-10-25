@@ -22,14 +22,14 @@ const saveToHero_1 = require("./handleDataFn/saveToHero");
 async function getHeroInfo(index, browser) {
     const page = await browser.newPage();
     await page.emulate(config_1.iPhone);
-    const heroInfoUrl = getHeroTargetUrl_1.getHeroInfoUrl(index);
+    const heroInfoUrl = (0, getHeroTargetUrl_1.getHeroInfoUrl)(index);
     await page.goto(heroInfoUrl, config_1.pageOption);
     const htmlData = await page.content();
     const $ = cheerio_1.default.load(htmlData);
-    const heroId = await saveToHero_1.saveToHero({
+    const heroId = await (0, saveToHero_1.saveToHero)({
         name: $('.hero-name').text(),
         title: $('.hero-title').text(),
-        categories: await handleCategories_1.handleCategories($('.hero-location').text()),
+        categories: await (0, handleCategories_1.handleCategories)($('.hero-location').text()),
         index: index,
     }).catch(() => console.log('saveToHero ERROR'));
     if (!heroId) {
@@ -45,16 +45,16 @@ async function getHeroInfo(index, browser) {
             survive: Number($('.cnver1').attr('class')?.slice(-1)) || 10,
         },
         bgcPic: $('.header-hero>img').attr('src') || '',
-        skins: await handelSkins_1.handleSkins($('.hero-skin').attr('href'), browser),
+        skins: await (0, handelSkins_1.handleSkins)($('.hero-skin').attr('href'), browser),
         heroVideo: $('.hero-video>a:nth-child(1)').attr('href') || '',
-        skills: await handelSkills_1.handleSkills($),
-        addPointRec: await handelAddPointRec_1.handleAddPointRec($),
-        equipmentRecs: await handelEquipmentRecs_1.handleEquipmentRecs($),
-        runes: await handelRunes_1.handleRunes($),
-        tips: await handleTips_1.handleTips($),
-        heroRelations: await handleHeroRelations_1.handleHeroRelations($),
-        learnVideos: await handleLearnVideos_1.handleLearnVideos($),
-        infoPic: await getInfoPicUrl_1.getInfoPicUrl(index),
+        skills: await (0, handelSkills_1.handleSkills)($),
+        addPointRec: await (0, handelAddPointRec_1.handleAddPointRec)($),
+        equipmentRecs: await (0, handelEquipmentRecs_1.handleEquipmentRecs)($),
+        runes: await (0, handelRunes_1.handleRunes)($),
+        tips: await (0, handleTips_1.handleTips)($),
+        heroRelations: await (0, handleHeroRelations_1.handleHeroRelations)($),
+        learnVideos: await (0, handleLearnVideos_1.handleLearnVideos)($),
+        infoPic: await (0, getInfoPicUrl_1.getInfoPicUrl)(index),
     };
     await page.close();
     await saveToHeroDetail(heroDetailData).catch((err) => console.log(err));

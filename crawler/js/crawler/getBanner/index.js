@@ -27,7 +27,7 @@ const getHomeBanners = async (browser) => {
             name: index + '',
             index,
             src: $(elem).find('a').attr('href') || 'https://pvp.qq.com/m/',
-            category: await handleCategory_1.handleCategory('homeBanner'),
+            category: await (0, handleCategory_1.handleCategory)('homeBanner'),
         });
     }));
     if ((await banner_model_1.BannerModel.find()).length) {

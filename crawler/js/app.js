@@ -16,13 +16,13 @@ const run = async () => {
         headless: false,
     });
     console.log(process.argv);
-    await getBanner_1.getHomeBanners(browser);
-    await getHomeVideo_1.getHomeVideo(browser);
-    await getHeroesInfo_1.getHeroesInfo(browser);
-    await getHeroBanner_1.getHeroBanner(browser);
+    await (0, getBanner_1.getHomeBanners)(browser);
+    await (0, getHomeVideo_1.getHomeVideo)(browser);
+    await (0, getHeroesInfo_1.getHeroesInfo)(browser);
+    await (0, getHeroBanner_1.getHeroBanner)(browser);
     console.log('hero end');
-    await closeExcessPage_1.closeExcessPage(browser, 1);
-    await getArticle_1.getArticles(browser);
+    await (0, closeExcessPage_1.closeExcessPage)(browser, 1);
+    await (0, getArticle_1.getArticles)(browser);
     console.log('end');
     await browser.close();
     await db_1.mobaDbConnect.close();

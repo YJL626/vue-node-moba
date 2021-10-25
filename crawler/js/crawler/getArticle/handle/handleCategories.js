@@ -6,7 +6,7 @@ const getter_1 = require("../utils/getter");
 let articleId = '';
 const handleCategories = async (category) => {
     if (!articleId) {
-        articleId = await getter_1.getArticleId();
+        articleId = await (0, getter_1.getArticleId)();
     }
     let categoryDocument = await category_model_1.CategoryModel.findOne({ name: category });
     if (categoryDocument) {
